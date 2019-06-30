@@ -1,39 +1,47 @@
+//1463 1로 만들기
 #include <cstdio>
 #include <algorithm>
 
 using namespace std;
 
-int x, min_t;
-int dp[1000100];
-
+int dp[1000010];
 int main(void)
 {
-	scanf("%d", &x);
+	int input;
+	scanf("%d", &input);
 
 	dp[1] = 0;
 	dp[2] = 1;
 	dp[3] = 1;
 
-	for(int i=4; i<=x; i++)
-	{
-		dp[i] = 1+dp[i-1];
-		
-		if(i%3==0)
-		{
-			min_t = 1+dp[i/3];
-			dp[i] = min(dp[i], min_t);
+	for(int i=4; i<=input; i++){
+		if(i%2 == 0){
+			if(i%3 == 0){
+				dp[i] = min(dp[i/2], dp[i/3]);
+				dp[i] = min(dp[i], dp[i-1]);
+				dp[i] += 1;
+			}
+			else{
+				dp[i] = min(dp[i/2], dp[i-1]);
+				dp[i] += 1;
+			}
 		}
-		
-		if(i%2==0)
-		{
-			min_t = 1+dp[i/2];
-			dp[i] = min(dp[i], min_t);
+		else if(i%3 == 0){
+			if(i%2 == 0){
+				dp[i] = min(dp[i/3], dp[i/2]);
+				dp[i] = min(dp[i], dp[i-1]);
+				dp[i] += 1;
+			}
+			else{
+				dp[i] = min(dp[i/3], dp[i-1]);
+				dp[i] += 1;
+			}
 		}
-		
-		
+		else{
+			dp[i] = dp[i-1]+1;
+		}
+
 	}
 
-	printf("%d\n", dp[x]);
-
-	return 0;
+	printf("%d\n", dp[input]);
 }
