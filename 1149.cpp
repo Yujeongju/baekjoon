@@ -1,43 +1,40 @@
-// 1149 RGB거리 : dp
-
+//1149 RGB거리
 #include <cstdio>
 #include <algorithm>
 
 using namespace std;
 
-int n;
-int arr[1010][10];
-int dp[1010][10];
-
+int arr[1010][3], dp[1010][3];
 int main(void)
 {
+	int N;
+	scanf("%d", &N);
 
-	scanf("%d", &n);
-
-	for(int i=1; i<=n; i++)
-		for(int j=1; j<=3; j++)
+	for(int i=0; i<N; i++){
+		for(int j=0; j<3; j++){
 			scanf("%d", &arr[i][j]);
-
-	dp[1][1] = arr[1][1];
-	dp[1][2] = arr[1][2];
-	dp[1][3] = arr[1][3];
-
-	for(int i=2; i<=n; i++)
-	{
-		for(int j=1; j<=3; j++)
-		{
-			if(j==1)
-				dp[i][1] = min(dp[i-1][2], dp[i-1][3])+arr[i][1];
-			else if(j==2)
-				dp[i][2] = min(dp[i-1][1], dp[i-1][3])+arr[i][2];
-			else if(j==3)
-				dp[i][3] = min(dp[i-1][1], dp[i-1][2])+arr[i][3];
 		}
 	}
 
-	printf("%d", min(min(dp[n][1], dp[n][2]),dp[n][3]));
+	dp[0][0] = arr[0][0];
+	dp[0][1] = arr[0][1];
+	dp[0][2] = arr[0][2];
 
-	return 0;
+	for(int i=1; i<N; i++){
+		for(int j=0; j<3; j++){
+			if(j == 0){
+				dp[i][j] = min(dp[i-1][1], dp[i-1][2]) + arr[i][0];
+			}
+			else if(j == 1){
+				dp[i][j] = min(dp[i-1][0], dp[i-1][2]) + arr[i][1];
+			}
+			else if(j == 2){
+				dp[i][j] = min(dp[i-1][0], dp[i-1][1]) + arr[i][2];
+			}
+		}
+	}
 
-
+	int result = min(dp[N-1][0], dp[N-1][1]);
+	result = min(result, dp[N-1][2]);
+	printf("%d\n",result);
 }
