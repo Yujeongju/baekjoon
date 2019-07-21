@@ -112,10 +112,10 @@ int main(void)
 
 	scanf("%d", &n);
 	vt.push_back(-1);
-	for(int i=0; i<n; i++)
+	for(int i=0; i < n; i++)
 		scanf("%d", &arr[i]);
 
-	for(int i=0; i<n; i++){
+	for(int i=0; i < n; i++){
 		//앞의 값보다 크면 push
 		if(arr[i] > vt[vt.size()-1])
 			vt.push_back(arr[i]);
