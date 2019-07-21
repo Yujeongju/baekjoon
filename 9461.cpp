@@ -1,19 +1,23 @@
-//9461 파도반수열
+//9461 파도반 수열
 #include <cstdio>
+#include <algorithm>
 
+using namespace std;
+
+long long arr[110], dp[110];
 int main(void)
 {
-	int T, n;
-	long long dp[110];
-	scanf("%d", &T);
+	int N, input;
+	scanf("%d", &N);
+	dp[0] = 0;
+	dp[1] = 1;
+	dp[2] = 1;
+	for(int i=3; i<=100; i++){
+		dp[i] = dp[i-3]+dp[i-2];
+	}
 
-	dp[1] = dp[2] = dp[3] = 1;
-	while(T--){
-		scanf("%d", &n);
-		for(int i=4; i<=n; i++){
-			dp[i] = dp[i-2]+dp[i-3];
-		}
-
-		printf("%lld\n", dp[n]);
+	while(N--){
+		scanf("%d", &input);
+		printf("%lld\n", dp[input]);
 	}
 }
