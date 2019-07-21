@@ -87,7 +87,7 @@ for(int i=1; i<=n; i++){
 </pre></code>
 
 ###### N log N
-이진탐색을 약간 변형한 알고리즘인 Lower bound(https://yhwan.tistory.com/18)
+이진탐색을 약간 변형한 알고리즘인 Lower bound(https://yhwan.tistory.com/18)  
 *주의 : 결과만 알 수 있다! 요소까지 알 수는 없음.
 <pre><code>
 int arr[100100];
@@ -120,8 +120,12 @@ int main(void)
 		if(arr[i] > vt[vt.size()-1])
 			vt.push_back(arr[i]);
 		//아니라면 lower_bound를 이용해 알맞은 위치에 push
-		else
+		else{
 			vt[lower_bound(vt, arr[i])] = arr[i];
+			//stl 이용한 코드
+			//num = lower_bound(vt.begin(), vt.end(), arr[i]) - vt.begin();
+			//vt[num] = arr[i];
+		}
 	}
 
 	//자른 수를 구하는 것이므로 n-vt.size()+1
