@@ -88,6 +88,7 @@ for(int i=1; i<=n; i++){
 
 ###### N log N
 이진탐색을 약간 변형한 알고리즘인 Lower bound(https://yhwan.tistory.com/18)
+*주의 : 결과만 알 수 있다! 요소까지 알 수는 없음.
 <pre><code>
 int Lower_Bound(vector<int> vt, int num) {
     int low = 0, high = vt.size() - 1;
