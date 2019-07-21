@@ -72,7 +72,8 @@ void dijkstra(int s){
 }
 </pre></code>
 
-### LIS  
+### LIS
+###### N^2
 <pre><code>
 for(int i=1; i<=n; i++){
 		for(int j=0; j<=i; j++){
@@ -82,6 +83,43 @@ for(int i=1; i<=n; i++){
 			}
 		}
 	}
+
+</pre></code>
+
+###### N log N
+이진탐색을 약간 변형한 알고리즘인 Lower bound(https://yhwan.tistory.com/18)
+<pre><code>
+int Lower_Bound(vector<int> vt, int num) {
+    int low = 0, high = vt.size() - 1;
+ 
+    while (low < high) {
+        int mid = (low + high) / 2;
+        if (vt[mid] >= num)
+            high = mid;
+        else
+            low = mid + 1;
+    }
+    return high;
+}
+ 
+int main(void)
+{
+    int n, num;
+    scanf("%d", &n);
+    vector<int> vt;
+    vt.push_back(-1);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &num);
+        if (num > vt[vt.size()-1])
+            vt.push_back(num);
+        else 
+            vt[Lower_Bound(vt, num)] = num;
+    }
+    printf("%d", n - vt.size() + 1);
+ 
+    return 0;
+}
+
 
 </pre></code>
 
