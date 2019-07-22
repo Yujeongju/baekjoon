@@ -111,11 +111,11 @@ int main(void)
 	vector<int> vt;
 
 	scanf("%d", &n);
-	vt.push_back(-1);
 	for(int i=0; i < n; i++)
 		scanf("%d", &arr[i]);
 
-	for(int i=0; i < n; i++){
+	vt.push_back(arr[0]);
+	for(int i=1; i < n; i++){
 		//앞의 값보다 크면 push
 		if(arr[i] > vt[vt.size()-1])
 			vt.push_back(arr[i]);
@@ -128,8 +128,8 @@ int main(void)
 		}
 	}
 
-	//자른 수를 구하는 것이므로 n-vt.size()+1
-	printf("%lu\n", n-vt.size()+1);
+	//자른 수를 구하는 것이므로 n-vt.size()
+	printf("%lu\n", n-vt.size());
 }
 </pre></code>
 
