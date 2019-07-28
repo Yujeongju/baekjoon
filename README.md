@@ -133,6 +133,21 @@ int main(void)
 }
 </pre></code>
 
+### LCS
+<pre><code>
+for(int i=1; i<=str1_len; i++){
+	for(int j=1; j<=str2_len; j++){
+		if(str1[i-1] == str2[j-1]){
+			dp[i][j] = dp[i-1][j-1] + 1;
+		}
+		else
+			dp[i][j] = max(dp[i][j-1], dp[i-1][j]);
+	}
+}
+printf("%d\n", dp[str1_len][str2_len]);
+
+</pre></code>
+
 ### Floyd  
 <pre><code>
 void floyd(void){
