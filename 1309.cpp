@@ -1,17 +1,21 @@
 //1309 동물원
 #include <cstdio>
+#include <algorithm>
 
-long long dp[1000001];
+#define MOD 9901
+using namespace std;
+
+long long dp[100100];
 int main(void)
 {
-	int input;
-	scanf("%d", &input);
-
+	int N;
+	scanf("%d", &N);
 	dp[0] = 1;
 	dp[1] = 3;
-	for(int i=2; i<=input; i++){
-		dp[i] = (dp[i-1]*2 + dp[i-2])%9901;
+	for(int i=2; i<=N; i++){
+		dp[i] = (dp[i-1]*2 + dp[i-2])%MOD;
 	}
 
-	printf("%lld\n", dp[input]%9901);
+	printf("%lld\n", dp[N]);
+
 }
