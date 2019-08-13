@@ -199,11 +199,11 @@ result[1] = 1;
 	}
 
 	//연쇄행렬곱셈 응용
-	for(int len=1; len<n; len++){
-		for(int i=1; i<=n-len; i++){
+	for(int len = 1; len < n; len++){
+		for(int i = 1; i <= n - len; i++){
 			int j = i+len;
 			dp[i][j] = INF;
-			for(int k=i; k<j; k++){
+			for(int k = i; k < j; k++){
 				//연쇄행렬곱셈 -> dp합 뒤는 고유의 값을 넣어야함.
 				dp[i][j] = min(dp[i][j], dp[i][k]+dp[k+1][j]+ (sum[j]-sum[i-1]) );
 			}
