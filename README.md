@@ -48,7 +48,7 @@ void dijkstra(int s){
 	for(int i=0; i<=N; i++)
 		dist[i] = INF;
 	dist[s] = 0;
-	priority_queue<pair<int, int> > pq;
+	priority_queue< pair < int, int > > pq;
 	pq.push(make_pair(0, s));
 
 	while(!pq.empty()){
@@ -59,7 +59,7 @@ void dijkstra(int s){
 		if(dist[here] < cost)
 			continue;
 
-		for(int i=0; i<graph[here].size(); i++){
+		for(int i=0; i < graph[here].size(); i++){
 			int current_node = graph[here][i].first;
 			int next_dist = cost + graph[here][i].second;
 
